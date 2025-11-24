@@ -1,13 +1,15 @@
 package com.flight.spring.flightbooking.mapper;
 
 import com.flight.spring.flightbooking.dto.FlightDTO;
+import com.flight.spring.flightbooking.soap.providera.Flight;
+
 import java.time.LocalDateTime;
 
 public class FlightMapper {
 
 
     //XML gelen veriyi maplama
-    public static FlightDTO mapProviderAToDTO(com.flight.spring.flightbooking.soap.providera.Flight source) {
+    public static FlightDTO mapProviderAToDTO(Flight source) {
         FlightDTO dto = new FlightDTO();
         dto.setProviderName("ProviderA (THY)");
 

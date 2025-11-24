@@ -1,10 +1,7 @@
 package com.flightprovidera.service;
-
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
-
-import java.io.Console;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;

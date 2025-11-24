@@ -1,19 +1,17 @@
 package com.flight.spring.flightbooking.soap.providera;
 
 import jakarta.xml.bind.annotation.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @XmlRootElement(name = "availabilitySearchResponse", namespace = "http://service.flightprovidera.com/")
 @XmlAccessorType(XmlAccessType.FIELD)
+@Data
+@NoArgsConstructor
 public class AvailabilitySearchResponse {
-
-
-    @XmlElement(name = "return", namespace = "")
+    //xml dönüş tagini yazmayınca datayı eşlemiyor
+    @XmlElement(name = "return")
     private SearchResult returnData;
 
-    public SearchResult getReturnData() {
-        return returnData;
-    }
-    public void setReturnData(SearchResult returnData) {
-        this.returnData = returnData;
-    }
+
 }

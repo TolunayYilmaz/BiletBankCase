@@ -2,22 +2,15 @@ package com.flight.spring.flightbooking.soap.providera;
 
 import jakarta.xml.bind.annotation.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data
+@NoArgsConstructor
 public class SearchRequest {
 
-
-    @XmlElement(name = "origin", namespace = "")
     private String origin;
-
-    @XmlElement(name = "destination", namespace = "")
     private String destination;
-
-    @XmlElement(name = "departureDate", namespace = "")
     private String departureDate;
-
-    public String getOrigin() { return origin; }
-    public void setOrigin(String origin) { this.origin = origin; }
 
 }
