@@ -1,0 +1,29 @@
+# --- Maven (Build Çıktıları) ---
+target/
+!.mvn/wrapper/maven-wrapper.jar
+# (Target klasörü derlenen kodları tutar, repoda asla olmamalıdır)
+
+# --- IntelliJ IDEA (IDE Ayarları) ---
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# --- Eclipse (IDE Ayarları - Sende bunlar da var) ---
+.settings/
+bin/
+.classpath
+.project
+.metadata/
+
+# --- VS Code (Olur da kullanırsan) ---
+.vscode/
+
+# --- İşletim Sistemi Dosyaları ---
+.DS_Store
+Thumbs.db
+
+# --- Log Dosyaları ---
+*.log
+logs/
