@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data
 @NoArgsConstructor
-public class AvailabilitySearchResponse {
+public class AvailabilitySearchResponseA {
     //xml dönüş tagini yazmayınca datayı eşlemiyor
     @XmlElement(name = "return")
-    private SearchResult returnData;
+    private SearchResultA returnData;
 
 
 }

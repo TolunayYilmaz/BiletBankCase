@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data
 @NoArgsConstructor
-public class AvailabilitySearch {
-
-    private SearchRequest request;
+public class AvailabilitySearchA {
+    @XmlElement(name = "arg0")
+    private SearchRequestA request;
 
 }

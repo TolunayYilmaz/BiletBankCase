@@ -13,7 +13,7 @@ import java.util.Random;
 public class SearchService {
 
 	@WebMethod
-	   public SearchResult availabilitySearch(@WebParam(name = "request") SearchRequest request) {
+	   public SearchResult availabilitySearch(SearchRequest request) {
 			System.out.println("Çalıştı");
 	        // Add basic validation
 	        if (request == null || 

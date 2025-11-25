@@ -11,11 +11,11 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data
 @NoArgsConstructor
-public class SearchResult {
+public class SearchResultA {
 
     private boolean hasError;
     private String errorMessage;
-    private List<Flight> flightOptions;
+    private List<FlightA> flightOptions;
 
 
 }

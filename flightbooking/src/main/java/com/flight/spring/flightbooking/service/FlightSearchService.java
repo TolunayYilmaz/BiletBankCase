@@ -4,7 +4,8 @@ import com.flight.spring.flightbooking.dto.FlightDTO;
 import com.flight.spring.flightbooking.entity.SearchLog;
 import com.flight.spring.flightbooking.mapper.FlightMapper;
 import com.flight.spring.flightbooking.repository.SearchLogRepository;
-import com.flight.spring.flightbooking.soap.providera.Flight;
+import com.flight.spring.flightbooking.soap.providera.FlightA;
+import com.flight.spring.flightbooking.soap.providerb.FlightB;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -29,15 +30,18 @@ public class FlightSearchService {
 
         try {
 
-            List<Flight> listA = integrationService.getFlightsFromProviderA();
+            List<FlightA> listA = integrationService.getFlightsFromProviderA();
+            List<FlightB> listB = integrationService.getFlightsFromProviderB();
 
-            if (listA != null) {
+            if (listA != null&&listB!=null) {
                 listA.forEach(f -> allFlights.add(FlightMapper.mapProviderAToDTO(f)));
-                saveLog("ProviderA", "SearchRequest: ALL", "Success: " + listA.size() + " flights");
+                listB.forEach(f->allFlights.add(FlightMapper.mapProviderBToDTO(f)));
+                saveLog("ProviderA & ProviderB", "SearchRequest: ALL", "Success: " + listA.size() + " flights");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
-            saveLog("ProviderA", "SearchRequest: ALL", "Error: " + e.getMessage());
+            saveLog("ProviderA / Provider B", "SearchRequest: ALL", "Error: " + e.getMessage());
         }
 
 

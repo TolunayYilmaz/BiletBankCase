@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data
 @NoArgsConstructor
-public class SearchRequest {
+public class SearchRequestA {
 
     private String origin;
     private String destination;

@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data
 @NoArgsConstructor
-public class Flight {
+public class FlightA {
 
     private String flightNo;
     private String origin;
