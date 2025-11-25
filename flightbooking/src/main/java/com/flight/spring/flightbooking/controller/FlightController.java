@@ -16,14 +16,18 @@ import java.util.List;
 public class FlightController {
 
     @Autowired
-    private final FlightSearchService searchService;
+    private final FlightSearchService flightSearchService;
 
 
 
     @GetMapping("/all")
     public List<FlightDTO> getAllFlights() {
-        return searchService.getAllFlights();
+        return flightSearchService.getAllFlights();
     }
 
+    @GetMapping("/cheapest")
+    public List<FlightDTO> getCheaphestFlights() {
+        return flightSearchService.getCheapestAllFlights();
+    }
 
 }
