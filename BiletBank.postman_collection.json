@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "87741728-054e-461e-8b68-558993834518",
+		"name": "BiletBank",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33594355"
+	},
+	"item": [
+		{
+			"name": "GetFlightServiceA",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" \r\n                  xmlns:ser=\"http://service.flightprovidera.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <ser:availabilitySearch>\r\n         <arg0>\r\n            <origin>IST</origin>\r\n            <destination>LHR</destination>\r\n            <departureDate>2025-12-01T10:00:00</departureDate>\r\n         </arg0>\r\n      </ser:availabilitySearch>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/flightProviderA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"flightProviderA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFlightServiceB",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" \r\n                  xmlns:ser=\"http://service.flightproviderb.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <ser:availabilitySearch>\r\n         <arg0>\r\n            <departure>IST</departure>\r\n            <arrival>LHR</arrival>\r\n            <departureDate>2025-12-01T10:00:00</departureDate>\r\n         </arg0>\r\n      </ser:availabilitySearch>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/flightProviderB",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"flightProviderB"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/flights/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCheaphest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/flights/cheapest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights",
+						"cheapest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"origin\": \"IST\",\r\n    \"destination\": \"COV\",  \r\n    \"date\": \"2025-12-30T10:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/flights/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights",
+						"search"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

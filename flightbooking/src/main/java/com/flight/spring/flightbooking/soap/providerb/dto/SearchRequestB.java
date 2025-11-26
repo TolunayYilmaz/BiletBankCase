@@ -1,10 +1,9 @@
-package com.flight.spring.flightbooking.soap.providerb;
+package com.flight.spring.flightbooking.soap.providerb.dto;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data

@@ -1,4 +1,4 @@
-package com.flight.spring.flightbooking.soap.providera;
+package com.flight.spring.flightbooking.soap.providera.dto;
 
 import jakarta.xml.bind.annotation.*;
 import lombok.Data;
@@ -14,8 +14,10 @@ public class FlightA {
     private String flightNo;
     private String origin;
     private String destination;
-    private String departuredatetime;
-    private String arrivaldatetime;
+    @XmlElement(name = "departuredatetime")
+    private String departureDateTime;
+    @XmlElement(name = "arrivaldatetime")
+    private String arrivalDateTime;
     private BigDecimal price;
 
 

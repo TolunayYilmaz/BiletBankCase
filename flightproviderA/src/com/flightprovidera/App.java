@@ -6,14 +6,9 @@ import jakarta.xml.ws.Endpoint;
 
 public class App {
     public static void main(String[] args) {
-        // Servisi 8081 portunda yayınlıyoruz
-        String url = "http://localhost:8081/flightprovidera";
+        String url = "http://localhost:8081/flightProviderA";
         System.out.println("Servis yayınlanıyor: " + url);
-
-        // Servisi bu URL'de ayağa kaldırır
-
         Endpoint.publish(url, new SearchService());
-
-        System.out.println("Servis çalışıyor... Durdurmak için konsolu kapatın.");
+        System.out.println("Servis A Yayında! Adres: " + url);
     }
 }

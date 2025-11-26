@@ -1,13 +1,15 @@
 package com.flight.spring.flightbooking.service;
 
-import com.flight.spring.flightbooking.soap.providera.AvailabilitySearchA;
-import com.flight.spring.flightbooking.soap.providera.AvailabilitySearchResponseA;
-import com.flight.spring.flightbooking.soap.providera.FlightA;
-import com.flight.spring.flightbooking.soap.providera.SearchRequestA;
-import com.flight.spring.flightbooking.soap.providerb.AvailabilitySearchB;
-import com.flight.spring.flightbooking.soap.providerb.AvailabilitySearchResponseB;
-import com.flight.spring.flightbooking.soap.providerb.FlightB;
-import com.flight.spring.flightbooking.soap.providerb.SearchRequestB;
+import com.flight.spring.flightbooking.dto.SearchRequestDto;
+import com.flight.spring.flightbooking.soap.providera.dto.AvailabilitySearchA;
+import com.flight.spring.flightbooking.soap.providera.dto.AvailabilitySearchResponseA;
+import com.flight.spring.flightbooking.soap.providera.dto.FlightA;
+import com.flight.spring.flightbooking.soap.providera.dto.SearchRequestA;
+import com.flight.spring.flightbooking.soap.providerb.dto.AvailabilitySearchB;
+import com.flight.spring.flightbooking.soap.providerb.dto.AvailabilitySearchResponseB;
+import com.flight.spring.flightbooking.soap.providerb.dto.FlightB;
+import com.flight.spring.flightbooking.soap.providerb.dto.SearchRequestB;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
@@ -21,6 +23,10 @@ public class FlightIntegrationService {
 
 
    private final WebServiceTemplate template;
+   @Value("${provider.a.url}")
+   private String providerAUrl;
+   @Value("${provider.b.url}")
+   private String providerBUrl;
 
     public FlightIntegrationService(Jaxb2Marshaller marshaller) {
         this.template = new WebServiceTemplate(marshaller);
@@ -40,7 +46,40 @@ public class FlightIntegrationService {
             requestWrapper.setRequest(requestData);
 
 
-            Object responseObj = template.marshalSendAndReceive("http://localhost:8081/flightprovidera", requestWrapper);
+            Object responseObj = template.marshalSendAndReceive(providerAUrl, requestWrapper);
+
+
+            AvailabilitySearchResponseA response = (AvailabilitySearchResponseA) responseObj;
+
+            // Gelen response içi dolu geliyor fakat hata dönerse tekrar kontrol et
+            if (response != null && response.getReturnData() != null) {
+                if (response.getReturnData().isHasError()) {
+                    System.out.println("PROVIDER A - HATA MESAJI: " + response.getReturnData().getErrorMessage());
+                }
+                return response.getReturnData().getFlightOptions();
+            }
+
+            return Collections.emptyList();
+
+        } catch (Exception e) {
+            System.err.println("Provider A Bağlantı Hatası: " + e.getMessage());
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+    public List<FlightA> getFlightsFromProviderA(SearchRequestDto searchRequestDto) {
+        try {
+
+            AvailabilitySearchA requestWrapper = new AvailabilitySearchA();
+            SearchRequestA requestA = new SearchRequestA();
+            requestA.setOrigin(searchRequestDto.origin());
+            requestA.setDestination(searchRequestDto.destination());
+            requestA.setDepartureDate(searchRequestDto.date());
+
+            requestWrapper.setRequest(requestA);
+
+
+            Object responseObj = template.marshalSendAndReceive(providerAUrl, requestWrapper);
 
 
             AvailabilitySearchResponseA response = (AvailabilitySearchResponseA) responseObj;
@@ -75,7 +114,41 @@ public class FlightIntegrationService {
             requestWrapper.setRequest(requestData);
 
 
-            Object responseObj = template.marshalSendAndReceive("http://localhost:8082/ws/providerB", requestWrapper);
+            Object responseObj = template.marshalSendAndReceive(providerBUrl, requestWrapper);
+
+
+            AvailabilitySearchResponseB response = (AvailabilitySearchResponseB) responseObj;
+
+            // Gelen response içi dolu geliyor fakat hata dönerse tekrar kontrol et
+            if (response != null && response.getReturnData() != null) {
+                if (response.getReturnData().isHasError()) {
+                    System.out.println("PROVIDER B - HATA MESAJI: " + response.getReturnData().getErrorMessage());
+                }
+                return response.getReturnData().getFlightOptions();
+            }
+
+            return Collections.emptyList();
+
+        } catch (Exception e) {
+            System.err.println("Provider B Bağlantı Hatası: " + e.getMessage());
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+    public List<FlightB> getFlightsFromProviderB(SearchRequestDto searchRequestDto) {
+        try {
+
+            AvailabilitySearchB requestWrapper = new AvailabilitySearchB();
+            SearchRequestB requestB = new SearchRequestB();
+            requestB.setDeparture(searchRequestDto.origin()); // Provider B farklı isim kullanıyorsa burada yönetirsin
+            requestB.setArrival(searchRequestDto.destination());
+            requestB.setDepartureDate(searchRequestDto.date());
+
+
+            requestWrapper.setRequest(requestB);
+
+
+            Object responseObj = template.marshalSendAndReceive(providerBUrl, requestWrapper);
 
 
             AvailabilitySearchResponseB response = (AvailabilitySearchResponseB) responseObj;

@@ -11,7 +11,7 @@ import java.util.Objects;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FlightDTO {
+public class FlightDto {
     private String providerName; // "ProviderA"/ "ProviderB"
     private String flightNumber;
     private String origin;
@@ -23,7 +23,7 @@ public class FlightDTO {
     @Override
     public boolean equals(Object object) {
         if (object == null || getClass() != object.getClass()) return false;
-        FlightDTO flightDTO = (FlightDTO) object;
+        FlightDto flightDTO = (FlightDto) object;
         return Objects.equals(flightNumber, flightDTO.flightNumber) && Objects.equals(origin, flightDTO.origin) && Objects.equals(destination, flightDTO.destination) && Objects.equals(departure, flightDTO.departure) && Objects.equals(arrival, flightDTO.arrival);
     }
 

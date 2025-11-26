@@ -1,4 +1,4 @@
-package com.flight.spring.flightbooking.soap.providera;
+package com.flight.spring.flightbooking.soap.providera.dto;
 
 import jakarta.xml.bind.annotation.*;
 import lombok.Data;

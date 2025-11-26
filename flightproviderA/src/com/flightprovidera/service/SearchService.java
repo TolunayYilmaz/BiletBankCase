@@ -14,7 +14,7 @@ public class SearchService {
 
 	@WebMethod
 	   public SearchResult availabilitySearch(SearchRequest request) {
-			System.out.println("Çalıştı");
+
 	        // Add basic validation
 	        if (request == null || 
 	            request.getOrigin() == null || request.getOrigin().trim().isEmpty() ||

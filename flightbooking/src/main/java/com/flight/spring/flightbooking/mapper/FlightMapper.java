@@ -1,8 +1,8 @@
 package com.flight.spring.flightbooking.mapper;
 
-import com.flight.spring.flightbooking.dto.FlightDTO;
-import com.flight.spring.flightbooking.soap.providera.FlightA;
-import com.flight.spring.flightbooking.soap.providerb.FlightB;
+import com.flight.spring.flightbooking.dto.FlightDto;
+import com.flight.spring.flightbooking.soap.providera.dto.FlightA;
+import com.flight.spring.flightbooking.soap.providerb.dto.FlightB;
 
 import java.time.LocalDateTime;
 
@@ -10,8 +10,8 @@ public class FlightMapper {
 
 
     //XML gelen veriyi maplama
-    public static FlightDTO mapProviderAToDTO(FlightA source) {
-        FlightDTO dto = new FlightDTO();
+    public static FlightDto mapProviderAToDTO(FlightA source) {
+        FlightDto dto = new FlightDto();
         dto.setProviderName("ProviderA (THY)");
 
 
@@ -21,17 +21,17 @@ public class FlightMapper {
         dto.setPrice(source.getPrice());
 
 
-        if (source.getDeparturedatetime() != null) {
-            dto.setDeparture(LocalDateTime.parse(source.getDeparturedatetime()));
+        if (source.getDepartureDateTime() != null) {
+            dto.setDeparture(LocalDateTime.parse(source.getDepartureDateTime()));
         }
-        if (source.getArrivaldatetime() != null) {
-            dto.setArrival(LocalDateTime.parse(source.getArrivaldatetime()));
+        if (source.getArrivalDateTime() != null) {
+            dto.setArrival(LocalDateTime.parse(source.getArrivalDateTime()));
         }
 
         return dto;
     }
-    public static FlightDTO mapProviderBToDTO(FlightB source) {
-        FlightDTO dto = new FlightDTO();
+    public static FlightDto mapProviderBToDTO(FlightB source) {
+        FlightDto dto = new FlightDto();
         dto.setProviderName("ProviderB (Pegasus)");
 
 
@@ -41,11 +41,11 @@ public class FlightMapper {
         dto.setPrice(source.getPrice());
 
 
-        if (source.getDeparturedatetime() != null) {
-            dto.setDeparture(LocalDateTime.parse(source.getDeparturedatetime()));
+        if (source.getDepartureDateTime() != null) {
+            dto.setDeparture(LocalDateTime.parse(source.getDepartureDateTime()));
         }
-        if (source.getArrivaldatetime() != null) {
-            dto.setArrival(LocalDateTime.parse(source.getArrivaldatetime()));
+        if (source.getArrivalDateTime() != null) {
+            dto.setArrival(LocalDateTime.parse(source.getArrivalDateTime()));
         }
 
         return dto;

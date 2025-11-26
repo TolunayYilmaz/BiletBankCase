@@ -12,14 +12,10 @@ public class SearchLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String provider;
-
-    @Column(length = 5000)
+    @Column(length = 200)
     private String request;
-
-    @Column(length = 5000)
+    @Column(length = 200)
     private String response;
-
     private LocalDateTime timestamp;
 }
